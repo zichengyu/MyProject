@@ -1,0 +1,64 @@
+spring:
+  jackson:
+    locale: zh_CN
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    sql-script-encoding: UTF-8
+    name: hikariCP
+    hikari:
+      maximum-pool-size: 32
+      auto-commit: true
+      connection-test-query: SELECT 1
+      connection-timeout: 2000
+      validation-timeout: 1000
+      idle-timeout: 0
+      max-lifetime: 30000
+      connection-init-sql: "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;"
+      data-source-properties:
+        serverTimezone: GMT+8
+        useTimezone: true
+        zeroDateTimeBehavior: round
+        characterEncoding: utf8
+        cachePrepStmts: true
+        prepStmtCacheSize: 128
+        prepStmtCacheSqlLimit: 1024
+        useSSL: false
+        useUnicode: true
+#server:
+#  tomcat:
+#    accesslog:
+#      enabled: true
+#      pattern: "%h %l %u %t %r %s %b %D"
+#swagger:
+#  enabled: false
+#  title: lion服务API文档
+#  description: lion服务API文档
+#  version: 1.0.0.RELEASE
+#  base-package: cn.xxx.service.xxx.lion
+#flyway:
+#  enabled: false
+#  baseline-on-migrate: true
+#  locations: "db/mysql/migration"
+#  schemas:
+#    - xxx
+#mybatis:
+#  mapper-locations: "db/mysql/mapper/**/**.xml"
+#  type-aliases-package: cn.xxx.service.xxx.lion.domain.entity
+#  configuration:
+#    use-actual-param-name: true
+#pagehelper:
+#  helper-dialect: mysql
+#  support-methods-arguments: true
+#
+#feign:
+#  httpclient:
+#    enabled: false
+#  okhttp:
+#    enabled: true
+#  hystrix:
+#    enabled: true
+#ribbon:
+#  ReadTimeout: 0
