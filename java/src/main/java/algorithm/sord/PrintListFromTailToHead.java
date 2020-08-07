@@ -25,9 +25,15 @@ public class PrintListFromTailToHead {
         node4.next = node5;
         node5.next = tail;
 
-        System.out.println(printListFromTailToHead(head));
+        System.out.println(printListFromTailToHead1(head));
     }
 
+    /**
+     * java栈解法
+     *
+     * @param listNode 节点
+     * @return 结果
+     */
     public static ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
         Stack<Integer> stack = new Stack<>();
         while (listNode != null) {
@@ -42,8 +48,29 @@ public class PrintListFromTailToHead {
     }
 
     /**
+     * 递归解法
      *
+     * @param listNode 节点
+     * @return 结果
      */
+    public static ArrayList<Integer> printListFromTailToHead1(ListNode listNode) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        if (listNode == null) {
+            return arrayList;
+        }
+        // 递归遍历
+        recursively(arrayList, listNode);
+        return arrayList;
+    }
+
+    private static void recursively(ArrayList<Integer> arrayList, ListNode listNode) {
+        if (listNode == null) {
+            return;
+        }
+        recursively(arrayList, listNode.next);
+        arrayList.add(listNode.val);
+    }
+
     public static class ListNode {
         int val;
         ListNode next = null;

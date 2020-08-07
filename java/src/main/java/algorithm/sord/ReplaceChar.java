@@ -28,14 +28,13 @@ public class ReplaceChar {
         int oldLength = str.length();
         int newLength = oldLength + seqNum * 2;
         str.setLength(newLength);
-        newLength--;
         for (int i = oldLength - 1; i >= 0; i--) {
             if (' ' == str.charAt(i)) {
-                str.setCharAt(newLength--, '0');
-                str.setCharAt(newLength--, '2');
-                str.setCharAt(newLength--, '%');
+                str.setCharAt(--newLength, '0');
+                str.setCharAt(--newLength, '2');
+                str.setCharAt(--newLength, '%');
             } else {
-                str.setCharAt(newLength--, str.charAt(i));
+                str.setCharAt(--newLength, str.charAt(i));
             }
         }
         return str.toString();
