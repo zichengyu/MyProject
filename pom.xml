@@ -9,12 +9,12 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>spark</module>
-        <module>java</module>
         <module>hadoop</module>
+        <module>java</module>
         <module>netty</module>
+        <module>pattern</module>
+        <module>spark</module>
         <module>spring</module>
-
     </modules>
 
     <build>
