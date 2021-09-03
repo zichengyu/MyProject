@@ -9,7 +9,8 @@ import static algorithm.sort.Example.exch;
  */
 public final class QuickSort {
 
-    private QuickSort() { }
+    private QuickSort() {
+    }
 
     /**
      * @param a can
@@ -43,9 +44,13 @@ public final class QuickSort {
         Comparable v = a[lo];
         while (true) {
             //大
-            while (less(a[++i], v)) { if (i == hi) break;}
+            while (less(a[++i], v)) {
+                if (i == hi) break;
+            }
             //小
-            while (less(v, a[--j])) { if (j == lo) break;}
+            while (less(v, a[--j])) {
+                if (j == lo) break;
+            }
             if (i >= j) break;
             exch(a, i, j);
         }
@@ -76,10 +81,36 @@ public final class QuickSort {
      * @param args
      */
     public static void main(String[] args) {
-        String[] a = new String[]{"E", "A", "E", "C", "J", "D", "R", "G"};
-        sort3(a, 0, a.length - 1);
-        for (String str : a) {
+        String[] array = new String[]{"E", "A", "E", "C", "J", "D", "R", "G"};
+        sort3(array, 0, array.length - 1);
+        for (String str : array) {
             System.out.print(str + "\t");
         }
+    }
+
+    private static void quickSort(int[] array, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int left = start;
+        int right = end;
+        int point = array[start];
+        while (left <= right) {
+            while (left <= right && array[left] < point) {
+                left++;
+            }
+            while (left <= right && array[right] > point) {
+                right--;
+            }
+            if (left <= right) {
+                int temp = array[left];
+                array[left] = array[right];
+                array[right] = temp;
+                left++;
+                right--;
+            }
+        }
+        quickSort(array, start, left);
+        quickSort(array, right, end);
     }
 }

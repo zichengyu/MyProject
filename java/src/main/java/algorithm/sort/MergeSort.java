@@ -8,41 +8,48 @@ package algorithm.sort;
  */
 public final class MergeSort {
 
-    private static int[] aux;
-
     private MergeSort() {
     }
 
-    public static void sort(int[] a, int low, int high) {
-        if (high <= low) {
+    private static void mergeSort(int[] array, int start, int end, int[] temp) {
+        if (start >= end) {
             return;
         }
-        int mid = (high - low) / 2 + low;
-        sort(a, low, mid);
-        sort(a, mid + 1, high);
-        merge(a, low, mid, high);
+        int mid = start + (end - start) / 2;
+        mergeSort(array, start, mid, temp);
+        mergeSort(array, mid + 1, end, temp);
+        merge(array, start, mid, end, temp);
     }
 
-    public static void merge(int[] a, int low, int mid, int high) {
-        aux = new int[a.length];
-        for (int i = 0; i <= high; i++) {
-            aux[i] = a[i];
+    private static void merge(int[] array, int start, int mid, int end, int[] temp) {
+        int left = start;
+        int right = mid + 1;
+        int t = start;
+        while (left <= mid && right <= end) {
+            if (array[left] < array[right]) {
+                temp[t++] = array[left++];
+            } else {
+                temp[t++] = array[right++];
+            }
         }
-        int i = low;
-        int j = mid + 1;
-        for (int k = low; k <= high; k++) {
-            if (i > mid) a[k] = aux[j++];
-            else if (j > high) a[k] = aux[i++];
-            else if (aux[i] > aux[j]) a[k] = aux[j++];
-            else a[k] = aux[i++];
+        while (left <= mid) {
+            temp[t++] = array[left++];
+        }
+        while (right <= end) {
+            temp[t++] = array[right++];
+        }
+        for (t = start; t <= end; t++) {
+            array[t] = temp[t];
         }
     }
+
 
     public static void main(String[] args) {
-        int a[] = {2, 7, 8, 10, 299, 5, 9, 14, 20, 66, 88, 92};
-        sort(a, 0, a.length - 1);
-        for (int i = 0; i < a.length; i++) {
-            System.out.print(a[i] + "\t");
+        int array[] = {2, 7, 8, 10, 299, 5, 9, 14, 20, 66, 88, 92};
+        int[] temp = new int[array.length];
+        mergeSort(array, 0, array.length - 1, temp);
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + "\t");
         }
     }
 }
